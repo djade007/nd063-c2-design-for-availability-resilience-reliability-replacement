@@ -1,0 +1,54 @@
+[ec2-user@ip-10-1-10-28 ~]$ mysql -h udacity-db.cezmsc6zbh2w.us-east-1.rds.amazonaws.com -uadmin -ppassword
+mysql: [Warning] Using a password on the command line interface can be insecure.
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 35
+Server version: 5.7.22-log Source distribution
+
+Copyright (c) 2000, 2020, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| innodb             |
+| mysql              |
+| performance_schema |
+| sys                |
+| udacity            |
++--------------------+
+6 rows in set (0.00 sec)
+
+mysql> use udacity;
+Database changed
+mysql> create table users (name varchat(30) not null)
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'varchat(30) not null)' at line 1
+mysql> create table users (name varchar(30) not null);
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> show tables;
++-------------------+
+| Tables_in_udacity |
++-------------------+
+| users             |
++-------------------+
+1 row in set (0.00 sec)
+
+mysql> insert into users (name) values ('Olajide')
+    -> ;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from users;
++---------+
+| name    |
++---------+
+| Olajide |
++---------+
+1 row in set (0.00 sec)
